@@ -1,4 +1,5 @@
 <?php
+
 // Active le mode strict pour la vérification des types
 declare(strict_types=1);
 // Déclare l'espace de noms pour ce contrôleur
@@ -6,6 +7,8 @@ namespace Mini\Controllers;
 // Importe la classe de base Controller du noyau
 use Mini\Core\Controller;
 use Mini\Models\User;
+
+require("app/Models/User.php");
 // Déclare la classe finale HomeController qui hérite de Controller
 final class HomeController extends Controller
 {

@@ -4,13 +4,13 @@ declare(strict_types=1);
 // Espace de noms du noyau (Core)
 namespace Mini\Core;
 // Déclare une classe abstraite de contrôleur de base
-abstract class Controller
+class Controller
 {
     // Méthode utilitaire pour rendre une vue avec des paramètres
     protected function render(string $view, array $params = []): void
     {
         // Extrait les paramètres en variables locales, sans écraser les existantes
-        extract($params, EXTR_SKIP);
+        extract(array: $params, EXTR_SKIP);
         // Construit le chemin du fichier de vue
         $viewFile = dirname(__DIR__) . '/Views/' . $view . '.php';
         // Construit le chemin du layout principal
@@ -20,6 +20,7 @@ abstract class Controller
         ob_start();
         // Inclut la vue spécifique
         require $viewFile;
+        
         // Récupère le contenu rendu et nettoie le tampon
         $content = ob_get_clean();
 

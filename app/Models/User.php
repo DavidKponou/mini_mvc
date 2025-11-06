@@ -1,5 +1,6 @@
 <?php
 
+// Ici je définit le namespace ou il y aura ma class
 namespace Mini\Models;
 
 use Mini\Core\Database;
