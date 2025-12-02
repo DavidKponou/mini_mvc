@@ -1,0 +1,70 @@
+CREATE TABLE LIGNE_COMMANDE(
+   Id VARCHAR(50),
+   Id_produit VARCHAR(50),
+   Quantité INT,
+   Prix_unitaire DECIMAL(10,2) NOT NULL,
+   Sous_total VARCHAR(50),
+   PRIMARY KEY(Id)
+);
+
+CREATE TABLE Administrateur(
+   Id VARCHAR(50),
+   Username VARCHAR(125),
+   email VARCHAR(120),
+   Mot_de_passe VARCHAR(255),
+   create_at DATE NOT NULL,
+   updated_at_ DATE NOT NULL,
+   PRIMARY KEY(Id),
+   UNIQUE(create_at),
+   UNIQUE(updated_at_)
+);
+
+CREATE TABLE PRODUIT(
+   Id VARCHAR(50),
+   Nom VARCHAR(50),
+   Prix DECIMAL(10,2) NOT NULL,
+   Description_ VARCHAR(120),
+   created_at DATE NOT NULL,
+   on_update DATE NOT NULL,
+   on_delete DATE NOT NULL,
+   Id_1 VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id),
+   UNIQUE(created_at),
+   UNIQUE(on_update),
+   UNIQUE(on_delete),
+   FOREIGN KEY(Id_1) REFERENCES LIGNE_COMMANDE(Id)
+);
+
+CREATE TABLE COMMANDE(
+   Id VARCHAR(50),
+   Id_client VARCHAR(50),
+   Numéro_unique VARCHAR(100),
+   Statut VARCHAR(50) NOT NULL,
+   Montant_total INT NOT NULL,
+   Adresse_livraison TEXT,
+   Id_1 VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id),
+   FOREIGN KEY(Id_1) REFERENCES LIGNE_COMMANDE(Id)
+);
+
+CREATE TABLE CATEGORIES(
+   Id VARCHAR(50),
+   Nom VARCHAR(50),
+   Description VARCHAR(94),
+   Image VARCHAR(50),
+   Id_1 VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id),
+   FOREIGN KEY(Id_1) REFERENCES PRODUIT(Id)
+);
+
+CREATE TABLE CLIENT(
+   Id VARCHAR(50),
+   Ville VARCHAR(100),
+   Code_postal VARCHAR(100) NOT NULL,
+   email VARCHAR(200),
+   Mot_de_passe VARCHAR(200),
+   Adresse_client TEXT,
+   Id_1 VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id),
+   FOREIGN KEY(Id_1) REFERENCES COMMANDE(Id)
+);
